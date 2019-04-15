@@ -7,11 +7,12 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface RetrofitClient {
     @GET("posts")
     Observable<List<Post>> getPostfromWeb();
 
-    @GET("posts/1/comments")
-    Observable<List<Comment>> getComment();
+    @GET("posts/{id}/comments")
+    Observable<List<Comment>> getComment(@Path("id") int postid);
 }
