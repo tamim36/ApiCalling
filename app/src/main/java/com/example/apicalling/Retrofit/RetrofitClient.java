@@ -23,6 +23,13 @@ public interface RetrofitClient {
     Observable<List<Comment>> getComment(@Path("id") int postid);*/
 
     //for comments?postId=1 type url
+    /*@GET("comments")
+    Observable<List<Comment>> getComment(@Query("postId") int postID);*/
+
+    // for comments?postId=1&_sort=id&_order=desc
     @GET("comments")
-    Observable<List<Comment>> getComment(@Query("postId") int postID);
+    Observable<List<Comment>> getComment(@Query("postId") int postID, //autometically add ? question mark and after "="sign
+                                         @Query("_sort") String sort,   //autometically add & sign
+                                         @Query("_order") String order  //autometically add & sign
+    );
 }
