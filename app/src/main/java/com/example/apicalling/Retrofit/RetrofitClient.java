@@ -34,9 +34,16 @@ public interface RetrofitClient {
     );*/
 
     //for comments?postId=1&postId=2&_sort=id&_order=desc
-    @GET("comments")
+    /*@GET("comments")
     Observable<List<Comment>> getComment(@Query("postId") int postID,
                                          @Query("postId") int postID2,
+                                         @Query("_sort") String sort,
+                                         @Query("_order") String order
+    );*/
+
+    //for comments?postId=1&postId=2&_sort=id&_order=desc for multiple postid like this
+    @GET("comments")
+    Observable<List<Comment>> getComment(@Query("postId") Integer[] postID,
                                          @Query("_sort") String sort,
                                          @Query("_order") String order
     );
