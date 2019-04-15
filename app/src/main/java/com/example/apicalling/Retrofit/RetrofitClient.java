@@ -27,9 +27,17 @@ public interface RetrofitClient {
     Observable<List<Comment>> getComment(@Query("postId") int postID);*/
 
     // for comments?postId=1&_sort=id&_order=desc
-    @GET("comments")
+    /*@GET("comments")
     Observable<List<Comment>> getComment(@Query("postId") int postID, //autometically add ? question mark and after "="sign
                                          @Query("_sort") String sort,   //autometically add & sign
                                          @Query("_order") String order  //autometically add & sign
+    );*/
+
+    //for comments?postId=1&postId=2&_sort=id&_order=desc
+    @GET("comments")
+    Observable<List<Comment>> getComment(@Query("postId") int postID,
+                                         @Query("postId") int postID2,
+                                         @Query("_sort") String sort,
+                                         @Query("_order") String order
     );
 }
