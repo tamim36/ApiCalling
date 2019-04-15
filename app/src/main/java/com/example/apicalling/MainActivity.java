@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.apicalling.Adapter.PostAdapter;
+import com.example.apicalling.CommentModel.Comment;
 import com.example.apicalling.Model.Post;
 import com.example.apicalling.Retrofit.RetrofitBuilder;
 import com.example.apicalling.Retrofit.RetrofitClient;
@@ -40,7 +41,32 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_posts.setHasFixedSize(true);
         recyclerView_posts.setLayoutManager(new LinearLayoutManager(this));
 
-        fetchData();
+        //fetchData();
+        fetchComment();
+    }
+
+    private void fetchComment() {
+        compositeDisposable.add(iClient.getComment()
+            .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Comment>>() {
+                               @Override
+                               public void accept(List<Comment> commentList) throws Exception {
+                                   displayComment(commentList);
+                               }
+                           }, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+                                   Toast.makeText(MainActivity.this, ""+throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                               }
+                           }
+                )
+        );
+    }
+
+    private void displayComment(List<Comment> commentList) {
+        PostAdapter postAdapter = new PostAdapter(this, commentList);
+        recyclerView_posts.setAdapter(postAdapter);
     }
 
     private void fetchData() {
@@ -63,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayData(List<Post> posts) {
-        PostAdapter adapter = new PostAdapter(this, posts);
-        recyclerView_posts.setAdapter(adapter);
+        //PostAdapter adapter = new PostAdapter(this, posts);
+        //recyclerView_posts.setAdapter(adapter);
     }
 
     @Override

@@ -10,14 +10,16 @@ import com.example.apicalling.R;
 
 public class PostViewHolder extends ViewHolder {
 
-    TextView txt_title, txt_content, txt_author;
+    TextView txt_post_id, txt_id, txt_name, txt_email, txt_body;
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        txt_title = (TextView)itemView.findViewById(R.id.txt_title);
-        txt_author = (TextView)itemView.findViewById(R.id.txt_author);
-        txt_content = (TextView)itemView.findViewById(R.id.txt_content);
+        txt_post_id = (TextView)itemView.findViewById(R.id.txt_post_id);
+        txt_id = (TextView)itemView.findViewById(R.id.txt_id);
+        txt_name = (TextView)itemView.findViewById(R.id.txt_name);
+        txt_email = (TextView)itemView.findViewById(R.id.txt_email);
+        txt_body = (TextView)itemView.findViewById(R.id.txt_body);
 
     }
 }
