@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchComment() {
-        compositeDisposable.add(iClient.getComment(new Integer[]{2,5,6,10},"id", "desc")
+        compositeDisposable.add(iClient.getComment("posts/1/comments")
             .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Comment>>() {

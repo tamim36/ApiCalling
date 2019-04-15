@@ -9,6 +9,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface RetrofitClient {
     @GET("posts")
@@ -42,9 +43,13 @@ public interface RetrofitClient {
     );*/
 
     //for comments?postId=1&postId=2&_sort=id&_order=desc for multiple postid like this
-    @GET("comments")
+    /*@GET("comments")
     Observable<List<Comment>> getComment(@Query("postId") Integer[] postID,
                                          @Query("_sort") String sort,
                                          @Query("_order") String order
-    );
+    );*/
+
+    //Just put url
+    @GET
+    Observable<List<Comment>> getComment(@Url String url);
 }
